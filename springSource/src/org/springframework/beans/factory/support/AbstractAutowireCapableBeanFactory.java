@@ -396,6 +396,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 				try {
 					// Give BeanPostProcessors a chance to return a proxy instead of the target bean instance.
+					//对BeanDefinigiton中的属性做些前置处理
 					Object bean = resolveBeforeInstantiation(beanName, mbd);
 					if (bean != null) {
 						return bean;
@@ -1006,7 +1007,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				checkDependencies(beanName, mbd, filteredPds, pvs);
 			}
 		}
-
+     //把属性的值填进去，比如配置文件里面有<age>12</age> 则把12值填入参数
 		applyPropertyValues(beanName, mbd, bw, pvs);
 	}
 
